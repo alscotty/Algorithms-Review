@@ -1,0 +1,33 @@
+
+.dropdown {
+    display:none;
+    /* position:absolute; */
+    background: white;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0 , 0, 0.2);
+    cursor: pointer;
+    width:100px;
+    top:50px;
+}
+
+.dropdown-link:hover{
+    cursor: pointer;
+}
+
+.dropdown {
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    /* margin:0; */
+}
+
+.dropdown li:hover{
+    background: lightblue;
+}
+
+.dropdown-link:hover .dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
