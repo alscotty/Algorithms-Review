@@ -1,6 +1,6 @@
 // Write a function, lucasNumber(n), that takes in a number.
 // The function should return the n-th number of the Lucas Sequence.
-// The 0-th number of the Lucas Sequence is 2.
+// The 0-th number of the Lucas Sequence is 2.asdadsasa
 // The 1-st number of the Lucas Sequence is 1
 // To generate the next number of the sequence, we add up the previous two numbers.
 //
