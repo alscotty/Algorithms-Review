@@ -7,3 +7,11 @@ def is_same_tree(p, q)
         
     return is_same_tree(p.right,q.right) && is_same_tree(p.left,q.left)
 end
+
+def single_number(nums)
+   hash=Hash.new(0)
+    nums.each do |num|
+       hash[num]+=1 
+    end
+    hash.invert[1]
+end
