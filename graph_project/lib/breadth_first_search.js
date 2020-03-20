@@ -1,18 +1,18 @@
-function breadthFirstSearch(startingNode, targetVal) {
-    let visited = new Set()
+function breadthFirstSearch(startingNode, targetVal, visited = new Set()) {
 
-    let queue=[startingNode]
+    let queue=[startingNode];
 
     while (queue.length){
-        let node=queue.shift();
-        if (visited.has(node)) continue;
-        visited.add(node);
-        if (node.val===targetVal) return node;
+        let currNode=queue.shift();
+        if(visited.has(currNode)) continue;
+        visited.add(currNode);
 
-       queue.push(...node.neighbors)
+        if(currNode.val === targetVal) return currNode;
+        queue = queue.concat(currNode.neighbors)
+
+    
     }
-
-    return null
+    return null;
 }
 
 module.exports = {
