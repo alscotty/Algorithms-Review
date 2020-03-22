@@ -1,4 +1,4 @@
-// Complete the countNumbers function below.
+// Complete the countNumbers function below. Adds
 function countNumbers(arr) {
     arr.forEach(pair=>{
         let min=pair[0];
