@@ -15,6 +15,8 @@ function binarySearch(array, target) {
     
 }
 
+//binary searching
+
 function binarySearchIndex(array, target) {
 
     let mid_idx = Math.floor(array.length / 2);
