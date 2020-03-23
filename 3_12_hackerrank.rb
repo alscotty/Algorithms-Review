@@ -1,4 +1,4 @@
-#recursive solution to find out if 2 binary tree are the same when given the root node of each
+#Recursive solution to find out if 2 binary tree are the same when given the root node of each:
 
 def is_same_tree(p, q)
     return true if !p && !q
