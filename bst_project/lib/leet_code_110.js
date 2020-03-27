@@ -11,6 +11,6 @@ function isBalanced(root) {
 
     let heightDifference=Math.abs(getHeight(root.left)-getHeight(root.right))<=1;
 
-    //combine multiple booleans into one final true/false return statement::
+    //then combine multiple booleans into one final true/false return statement::
     return heightDifference && isBalanced(root.left) && isBalanced(root.right);
 }
