@@ -130,3 +130,16 @@ def hasCycle(head)
 
     -1
 end
+
+# @param {Integer[]} nums
+# @return {Boolean}
+def contains_duplicate(nums)
+    count_hash = Hash.new(0)
+    
+    nums.each do |el|
+       count_hash[el] +=1
+    end
+    
+    return false if nums.empty?
+    count_hash.values.sort.last > 1
+end
