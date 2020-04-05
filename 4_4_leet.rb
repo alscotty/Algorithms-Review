@@ -49,3 +49,84 @@ def is_power_of_three(n)
     
     test_num == n || n == 1
 end
+
+##almost complete:
+# The is_bad_version API is already defined for you.
+# @param {Integer} version
+# @return {boolean} whether the version is bad
+# def is_bad_version(version):
+
+# @param {Integer} n
+# @return {Integer}
+
+# can do this in O(log(n))
+# check mid idx => good, check right, bad check left
+# like binary search!
+
+def first_bad_version(n)
+    
+    
+    searchable = (1..n).to_a
+    
+    mid_idx = searchable.length/2
+    
+    if is_bad_version(searchable[mid_idx])
+        return first_bad_version(searchable[mid_idx..-1])
+    else
+        return first_bad_version(searchable[0...mid_idx])
+    end
+          
+end
+
+# @param {Integer[]} nums
+# @return {Integer}
+
+#sorted_arr always one number shorted than the 'complete' set
+
+def missing_number(nums)
+   sorted_arr = nums.sort
+    
+   full_arr = (0..nums.max).to_a 
+    
+    (0...sorted_arr.length).each do |idx|
+        return full_arr[idx] if full_arr[idx] != sorted_arr[idx]
+    end
+        
+    nums.max+1
+end
+
+# Definition for singly-linked list.
+# class ListNode
+#     attr_accessor :val, :next
+#     def initialize(val)
+#         @val = val
+#         @next = nil
+#     end
+# end
+
+# @param {ListNode} head
+# @return {Boolean}
+
+# if is cycle, return the index where the tail reconnects!
+# else if not cycle, return -1
+
+
+def hasCycle(head)
+    
+    visited = {}
+    visited[head.val] = 0
+    
+    node = head
+    idx = 0
+    
+    while node.next
+        return visited[node.val] if visited[node.val]
+        
+        visited[node.val] = idx
+        
+        node = node.next
+        idx++
+    end
+
+    -1
+end
