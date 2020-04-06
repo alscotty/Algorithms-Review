@@ -47,3 +47,41 @@ def isPossible(a, b, c, d)
 end
 
 # p isPossible(1,4,5,9) => "Yes"
+
+
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val)
+#         @val = val
+#         @left, @right = nil, nil
+#     end
+# end
+
+# @param {TreeNode} root
+# @return {Boolean}
+
+def is_valid_bst(root)
+    return unless root
+    if root.left 
+        return false unless root.left.val < root.val
+    elsif root.right
+        return false unless root.right.val > root.val
+    end
+    
+    
+    is_valid_bst(root.left) && is_valid_bst(root.right)
+end
+
+# @param {Character[]} s
+# @return {Void} Do not return anything, modify s in-place instead.
+
+def reverse_string(s)
+    stop_idx = s.length/2
+    
+    (0...stop_idx).each do |idx|
+        s[idx], s[-idx-1] =  s[-idx-1], s[idx]
+    end
+    
+end
+
