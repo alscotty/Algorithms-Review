@@ -105,3 +105,42 @@ def is_anagram(s, t)
     s.split("").sort == t.split("").sort
 end
 
+# @param {String} s
+# @return {Boolean}
+def is_palindrome(s)
+    alphabet = ('a'..'z').to_a
+    nums = ('0'..'9').to_a
+    alphabet.concat(nums)
+    filtered_str = ""
+    
+    s.each_char do |char|
+        if alphabet.include?(char.downcase)
+           filtered_str += char.downcase 
+        end
+    end
+    
+    filtered_str == filtered_str.reverse
+end
+
+
+# @param {String[]} strs
+# @return {String}
+
+def longest_common_prefix(strs)
+    lcp=""
+    return lcp if strs.empty?
+    
+   min_size = strs.min_by(&:length).length
+    
+    (0...min_size).each do |idx|
+       if strs.all? {|arr| arr[idx] == strs[0][idx]} 
+           lcp += strs[0][idx] 
+       else
+          break 
+       end
+    end
+    
+    lcp
+end
+
+
