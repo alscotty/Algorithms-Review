@@ -85,3 +85,23 @@ def reverse_string(s)
     
 end
 
+# @param {Integer} x
+# @return {Integer}
+
+
+def reverse(x)
+    reversed_num=x.to_s.split("").reverse.join("").to_i
+    
+    return 0 unless reversed_num < 2**31 && reversed_num > -2**31
+    
+    x >0 ? reversed_num : -reversed_num
+end
+
+# @param {String} s
+# @param {String} t
+# @return {Boolean}
+
+def is_anagram(s, t)
+    s.split("").sort == t.split("").sort
+end
+
