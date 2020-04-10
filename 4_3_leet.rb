@@ -13,7 +13,7 @@ end
 # Want to merge two sorted linked lists...
 
 # Definition for singly-linked list.
-# class ListNode
+# class ListNodeasadsa
 #     attr_accessor :val, :next
 #     def initialize(val)
 #         @val = val
