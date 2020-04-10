@@ -1,0 +1,15 @@
+{
+  "name": "more_mocha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test "
+  },
+  "scripts": {
+    "test": "mocha test/*.js" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
