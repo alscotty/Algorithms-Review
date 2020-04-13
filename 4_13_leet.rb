@@ -97,3 +97,29 @@ def remove_nth_from_end(head, n)
        
     head
 end
+
+# Definition for singly-linked list.
+# class ListNode
+#     attr_accessor :val, :next
+#     def initialize(val)
+#         @val = val
+#         @next = nil
+#     end
+# end
+
+# @param {ListNode} head
+# @return {Boolean}
+def hasCycle(head)
+    vals= Set.new()
+    count =0
+    curr_node = head
+    
+    while curr_node
+         vals.add(curr_node.val)
+
+        count+=1
+        curr_node = curr_node.next
+    end
+    
+    count == vals.length
+end
