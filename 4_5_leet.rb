@@ -1,6 +1,6 @@
 a = [[1,2],[3,4]]
 
-# p a.transpose
+# p a.transpose!!!
 
 def rotate(matrix)
     

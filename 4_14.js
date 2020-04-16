@@ -28,3 +28,23 @@ function createPackage(small, big, goal) {
 
     return -1
 }
+
+// # @param { Integer[] } nums
+// # @return { Integer[][] }
+
+// def permute(nums)
+
+// num_arrays = (1..nums).inject{| num, acc | num * acc }
+
+// perm_arrays = Array.new(num_arrays) { Array.new(nums.length) }
+
+// offset = 0
+
+// nums.each_with_index do | num, idx |
+//     num_arrays.times do
+
+//     end
+//     end
+    
+//     perm_arrays
+// end
