@@ -9,5 +9,6 @@ convert.fToC = function (fahrenheit) {
     if (!Number.isInteger(fahrenheit)) return undefined;
     return (fahrenheit - 32) * 5 / 9;
 }
+//all the code
 
 module.exports = convert;
