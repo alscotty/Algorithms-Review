@@ -74,3 +74,44 @@ def getHeight(arr)
 end
 
 puts getHeight([2,3,3,5])
+
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val)
+#         @val = val
+#         @left, @right = nil, nil
+#     end
+# end
+
+# @param {TreeNode} root
+# @param {Integer} x
+# @param {Integer} y
+# @return {Boolean}
+
+# get depth
+# get parent
+
+def get_depth_and_parent(root,node, depth=0)
+    return unless root
+    
+    if root.left
+        depth +=1
+        return [root.left,depth] if root.left = node.val
+        get_depth_and_parent(root.left, node, depth)
+    end
+    
+    if root.right
+        depth +=1
+        return [root.right,depth] if root.right = node.val
+        get_depth_and_parent(root.right, node, depth)
+    end
+    
+end
+
+
+def is_cousins(root, x, y)
+    return false unless root
+    
+    get_depth_and_parent(root,x) == get_depth_and_parent(root,y)
+end
