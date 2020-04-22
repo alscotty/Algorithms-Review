@@ -1,5 +1,5 @@
 def howManyPalindromes(s, lower, upper)
-    # Write your code here and below:
+    # Write ysdfsdfsdfour code here and below:
     palin_count= Array.new(lower.length,0)
 
     start_idx=0
