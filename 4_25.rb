@@ -42,3 +42,48 @@ end
 # big O/edge cases/optimize
 
 
+# @param {Integer[]} nums
+# @return {Integer}
+def single_number(nums)
+   hash=Hash.new(0)
+    nums.each do |num|
+       hash[num]+=1 
+    end
+    hash.invert[1]
+end
+
+# @param {Integer[]} nums1
+# @param {Integer[]} nums2
+# @return {Integer[]}
+
+def intersect(nums1, nums2)
+
+    if nums1.length >= nums2.length
+        min_arr = nums2
+        max_arr =  nums1
+    else
+        min_arr = nums1
+        max_arr = nums2
+    end
+    
+    size = max_arr.length
+    while min_arr.length>0
+        
+       if min_arr.all? {|el| max_arr.include?(el)}
+           return min_arr
+       else
+          min_arr.pop 
+       end
+    end
+    []
+end
+
+# @param {Integer[]} nums
+# @return {Void} Do not return anything, modify nums in-place instead.
+
+def move_zeroes(nums)
+  zero_count = nums.count(0)
+    nums.delete(0)
+    nums.concat(Array.new(zero_count,0))
+    
+end 
