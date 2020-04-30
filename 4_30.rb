@@ -60,10 +60,21 @@ end
 # param_1 = obj.reset()
 # param_2 = obj.shuffle()
 
-sol = Solution.new([1,2,3])
 
-sol.shuffle
-p sol
-
-sol.reset
-p sol.original
+def first_uniq_char(s)
+    return -1 if s.empty?
+    
+    count_hash = Hash.new {|hash,key| hash[key]=[]}
+    
+    s.each_char.with_index do |char, idx|
+       count_hash[char]<<idx
+    end
+    
+    count_hash = count_hash.invert
+    
+    min_arr = count_hash.min_by {|indices, val| indices.length}
+    
+    return min_arr.first[0] if min_arr.first.length == 1
+    
+    -1
+end
