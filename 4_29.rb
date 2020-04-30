@@ -45,3 +45,60 @@ def maxEvents(arrival, duration)
 end
 
 fptr = File.open(ENV['OUTPUT_PATH'], 'w')
+
+# @param {Integer[]} a
+# @return {Integer}
+
+# 3 ->1
+# 4-> 2
+# 5->3
+# any array where length>=3; l-2 products to add; BUT more!! options to consider to find the min..
+
+
+
+
+def product(arr)
+   arr.inject{|el,acc| el*acc}
+end
+
+
+def min_score_triangulation(a)
+    return nil if a.length<3
+    
+    a.sort!
+    min_sum = 0
+    
+    lowest_pair = a[0..1]
+    2.times { a.shift }
+    
+    a.each do |el|
+       min_sum += product([*lowest_pair, el]) 
+    end
+    
+    min_sum
+end
+
+# @param {String[]} list1
+# @param {String[]} list2
+# @return {String[]}
+
+def find_restaurant(list1, list2)
+    min_idx_sum = list1.length+list2.length
+    fav=[]
+    
+    list1.each_with_index do |restaurant,idx|
+        pair_idx = list2.index(restaurant)
+        next unless pair_idx
+        
+        if (idx + pair_idx) == min_idx_sum
+            fav << restaurant            
+        elsif (idx + pair_idx) < min_idx_sum
+           min_idx_sum =  (idx + pair_idx)
+            fav << restaurant
+        end
+        
+    end
+    
+    
+    fav 
+end
