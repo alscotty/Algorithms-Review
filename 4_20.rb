@@ -3,7 +3,7 @@
 #
 # Complete the 'createBST' function below.
 #
-# The function accepts INTEGER_ARRAY keys as parameter.
+# The function accepts INTEGER_ARRAY keys as parameter.asdasdasdas
 #
 class Node 
     attr_accessor :val, :left, :right
