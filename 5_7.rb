@@ -25,3 +25,18 @@ def getIntersectionNode(headA, headB)
     nil
 end
 
+
+def find_repeated_dna_sequences(s)
+    hash=Hash.new(0)
+    
+    (0..s.length-10).each do |start_idx|
+       seq=s[start_idx..start_idx+9]
+       hash[seq]+=1
+    end
+    p hash
+    dup_hash = hash.select {|k,v| v>1 }
+    
+    dup_hash.keys
+end
+
+
