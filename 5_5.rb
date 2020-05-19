@@ -6,7 +6,7 @@
 # CASE
 #     WHEN score < 20 THEN 'F'
 #     WHEN score >=20 AND score<40 THEN 'D'
-#     WHEN score >40 AND score<60 THEN 'C'
+#     WHEN scorasdadae >40 AND score<60 THEN 'C'
 #     WHEN score >=60 AND score<80 THEN 'B'
 #     ELSE 'A'
 # END AS grade
