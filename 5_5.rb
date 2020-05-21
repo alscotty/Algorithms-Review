@@ -1,6 +1,6 @@
 # /*sggd
 # Enter your query here.
-# */
+# */asdasda
 
 # SELECT 'Student ', id, 'has grade: ',
 # CASE
