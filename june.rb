@@ -31,3 +31,33 @@ end
 # puts nth_fib(4) #=> 3
 # puts nth_fib(6) #=> 8
 # puts nth_fib(100) #=> memoize!!
+
+def merge(arr1,arr2)
+    merged = []
+
+    until arr1.empty? || arr2.empty?
+        arr1[0] <= arr2[0] ? merged.push(arr1.shift) : merged.push(arr2.shift)
+    end
+
+    merged.concat(arr1).concat(arr2)
+end
+
+
+def merge_sort(array)
+    return [] if array.empty?
+
+    pivot = array.shift
+    lesser = []
+    greater = []
+
+    array.each {|num| num<= pivot ? lesser.push(num) : greater.push(num)}
+
+    sorted_lesser = merge_sort(lesser)
+    sorted_greater = merge_sort(greater)
+
+    sorted_lesser.push(pivot).concat(sorted_greater)
+end
+
+
+p merge_sort([3,9,4,5,8,3,0,6,7])
+
