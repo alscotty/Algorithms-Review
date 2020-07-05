@@ -52,3 +52,39 @@ end
 def leaf_similar(root1, root2)
   get_lef_seq(root1) == get_lef_seq(root2)
 end
+
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val = 0, left = nil, right = nil)
+#         @val = val
+#         @left = left
+#         @right = right
+#     end
+# end
+# @param {TreeNode} root
+# @return {Integer}
+
+# me
+# | \
+# me  greater than me || me
+
+def find_second_minimum_value(root)
+    if !root
+        return 
+    end
+    
+    
+    if root.left
+        if root.left.val != root.val
+            return root.left.val
+        else
+            find_second_minumum_value(root.left)
+        end
+    end
+     if root.right
+        find_second_minumum_value(root.right)
+    end
+    
+    -1
+end
