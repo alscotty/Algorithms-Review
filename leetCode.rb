@@ -88,4 +88,32 @@ one.left = two
 one.right = three
 two.right = five
 
-puts binary_tree_paths(one)
+# puts binary_tree_paths(one)
+
+def next_pascal(level)
+    next_level = []
+
+    (0...level.length-1).each do |idx|
+        next_level.push(level[idx] + level[idx+1])
+    end
+
+    [1] + next_level + [1]
+end
+
+
+def n_pascals_triangle(n)
+    pascal = [[1],[1,1]]
+    if n <= 2
+        return pascal.take(n)
+    end
+
+    until pascal.length == n
+        pascal.push(next_pascal(pascal.last))
+    end
+
+    pascal
+end
+
+p n_pascals_triangle(3)
+p n_pascals_triangle(5)
+p n_pascals_triangle(8)
