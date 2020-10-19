@@ -105,3 +105,35 @@ def sum_even_grandparent(root)
     
     grand_sum
 end
+
+# @param {Integer[]} nums
+# @param {Integer} target
+# @return {Integer}
+
+# binary search
+
+def search_insert(nums, target)
+    return unless !nums.empty?
+    mid_idx = nums.length/2
+    mid_num = nums[mid_idx]
+    
+    if mid_num == target
+        return mid_idx
+    elsif nums.length == 1    
+        return target < nums[0] ? 0 : mid_idx + 1
+    elsif nums.length == 2 && nums.first < target && nums.last > target
+        return mid_idx
+    end
+    
+    if target < mid_num
+        return search_insert(nums[0...mid_idx],target)
+    else
+        right_search = search_insert(nums[mid_idx..-1],target)
+        if right_search
+            return right_search + mid_idx
+        end
+    end
+    
+end
+
+
