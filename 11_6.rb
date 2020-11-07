@@ -46,3 +46,23 @@ def repeated_substring_pattern(str)
     
     false
 end
+
+def sort_colors(nums)
+    return [] if nums.empty?
+    return nums if nums.length == 1
+
+    mid_idx = nums.length/2
+    pivot_el = nums[mid_idx]
+    
+    lesser = []
+    greater = []
+    
+    (0...nums.length).each do |idx|
+       next if idx == mid_idx
+        nums[idx] >= pivot_el ? greater << nums[idx] : lesser << nums[idx]
+    end
+    
+    sort_colors(lesser) + [pivot_el] + sort_colors(greater)
+end
+
+p sort_colors([2,0,2,1,1,0])
