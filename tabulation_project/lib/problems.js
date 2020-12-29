@@ -51,8 +51,21 @@ function stepper(nums) {
 console.log(maxNonAdjacentSum([2, 7, 9, 3, 4]))   // => 15, because 2 + 9 + 4
 console.log(maxNonAdjacentSum([4,2,1,6]))         // => 10, because 4 + 6 
 
+// tabulation method
 function maxNonAdjacentSum(nums) {
-   
+    if (nums.length < 1) return 0;
+    let table = new Array(nums.length).fill(0);
+    table[0] = nums[0];
+
+    for (let i = 1; i < table.length; i++){
+        let skipLeftNeighbor = table[i-2] === undefined ? 0 : table[i - 2];
+        let includeThisNum = skipLeftNeighbor + nums[i];
+        let notIncludingThisNum = table[i - 1];
+
+        table[i] = Math.max(includeThisNum, notIncludingThisNum);
+    }
+
+    return table[table.length - 1];
 }
 
 
