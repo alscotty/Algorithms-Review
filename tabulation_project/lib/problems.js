@@ -48,8 +48,8 @@ function stepper(nums) {
 //
 // Examples:
 //
-console.log(maxNonAdjacentSum([2, 7, 9, 3, 4]))   // => 15, because 2 + 9 + 4
-console.log(maxNonAdjacentSum([4,2,1,6]))         // => 10, because 4 + 6 
+// console.log(maxNonAdjacentSum([2, 7, 9, 3, 4]))   // => 15, because 2 + 9 + 4
+// console.log(maxNonAdjacentSum([4,2,1,6]))         // => 10, because 4 + 6 
 
 // tabulation method
 function maxNonAdjacentSum(nums) {
