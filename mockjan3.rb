@@ -86,3 +86,64 @@ def del_nodes(root, to_delete)
     
     remaining_roots
 end
+
+class TreeNode
+    attr_accessor :val, :left, :right
+    def initialize(val = 0, left = nil, right = nil)
+        @val = val
+        @left = left
+        @right = right
+    end
+end
+
+# problem, return true or false where given two trees if one is included in the other
+# assuming we know which tree is greater already:
+
+def are_trees_same?(root1,root2)
+    queue1 = [root1]
+    queue2 = [root2]
+
+     until queue1.empty? || queue2.empty?
+        curr_node1 = queue1.shift
+        curr_node2 = queue2.shift
+        return false if curr_node1.val != curr_node2.val
+
+        if curr_node1.left
+            queue1 << curr_node1.left
+        end
+        if curr_node1.right
+            queue1 << curr_node1.right
+        end
+        if curr_node2.left
+            queue2 << curr_node2.left
+        end
+        if curr_node2.right
+            queue2 << curr_node2.right
+        end
+
+    end
+
+    true
+end
+
+def is_second_tree_included?(root1,root2)
+    queue = [root1]
+
+    until queue.empty?
+        curr_node = queue.shift
+
+        if curr_node.val == root2.val
+            return true if are_trees_same?(curr_node,root2)
+        end
+
+        if curr_node.left
+            queue << curr_node.left
+        end
+        if curr_node.right
+            queue << curr_node.right
+        end
+
+    end
+
+    false
+end
