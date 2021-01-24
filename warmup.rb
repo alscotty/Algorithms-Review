@@ -10,6 +10,7 @@
 # @param {TreeNode} root
 # @param {Integer} low
 # @param {Integer} high
+# test new commands
 # @return {TreeNode}
 
 def has_valid_child?(node,low,high)
