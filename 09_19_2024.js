@@ -25,3 +25,22 @@ var generate = function (numRows) {
 };
 
 console.log(generate(5));
+
+// easy problem - given array of nums, all appear twice except for 1, return that number
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function (nums) {
+    let seenSet = new Set();
+
+    nums.forEach(num => {
+        if (seenSet.has(num)) {
+            seenSet.delete(num)
+        } else {
+            seenSet.add(num)
+        }
+    })
+
+    return Array.from(seenSet)[0];
+};
