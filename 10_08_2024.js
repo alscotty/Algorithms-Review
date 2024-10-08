@@ -79,7 +79,7 @@ const traverseMap = (mapArray, startLocation, currentHopTotal = 0, visited = new
     console.log(possibleCoordinates)
 
     // out of places to go
-    if (possibleCoordinates.length = 0) return currentHopTotal;
+    if (possibleCoordinates.length = 0) return Infinity;
 
     visited.add(startLocation)
     let possibleHops = []
