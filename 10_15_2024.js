@@ -194,5 +194,3 @@ function closedIsland(grid) {
 
     return closedIslands;
 }
-
-
