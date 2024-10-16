@@ -146,10 +146,10 @@ const closedIsland = (grid) => {
 
 
 
-Here's a JavaScript solution to count the number of closed islands using DFS:
+// Here's a JavaScript solution to count the number of closed islands using DFS:
 
-javascript
-Copy code
+// javascript
+// Copy code
 function closedIsland(grid) {
     const rows = grid.length;
     const cols = grid[0].length;
