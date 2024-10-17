@@ -147,46 +147,34 @@ const closedIsland = (grid) => {
 
 
 // Here's a JavaScript solution to count the number of closed islands using DFS:
+// land connected to the border is allowed and counted:
+const dfs = (i, j, rows, cols, grid) => {
+    // Base case: if out of bounds or water, return
+    if (i < 0 || i >= rows || j < 0 || j >= cols || grid[i][j] === 1) return;
+    
+    // Mark the cell as visited by turning land (0) into water (1)
+    grid[i][j] = 1;
 
-// javascript
-// Copy code
-function closedIsland(grid) {
+    // Perform DFS in all four directions
+    dfs(i - 1, j, rows, cols, grid); // Up
+    dfs(i + 1, j, rows, cols, grid); // Down
+    dfs(i, j - 1, rows, cols, grid); // Left
+    dfs(i, j + 1, rows, cols, grid); // Right
+};
+
+function countIslands(grid) {
     const rows = grid.length;
     const cols = grid[0].length;
     
-    // Helper function to run DFS and mark all land connected to (i, j)
-    const dfs = (i, j) => {
-        // Base case: if out of bounds or water, return
-        if (i < 0 || i >= rows || j < 0 || j >= cols || grid[i][j] === 1) return;
-        
-        // Mark the cell as visited by turning land (0) into water (1)
-        grid[i][j] = 1;
-
-        // Perform DFS in all four directions
-        dfs(i - 1, j); // Up
-        dfs(i + 1, j); // Down
-        dfs(i, j - 1); // Left
-        dfs(i, j + 1); // Right
-    };
-
-    // Eliminate all land connected to the boundary (these cannot be closed islands)
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            if ((i === 0 || i === rows - 1 || j === 0 || j === cols - 1) && grid[i][j] === 0) {
-                // Run DFS from the boundary land to mark it as non-closed
-                dfs(i, j);
-            }
-        }
-    }
-
     let closedIslands = 0;
 
     // Now, count all the remaining closed islands
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
             if (grid[i][j] === 0) {
+                console.log(`Found island at row: ${i} and col: ${j}`)
                 // This is a closed island, perform DFS to mark all its land
-                dfs(i, j);
+                dfs(i, j, rows, cols, grid);
                 closedIslands++;
             }
         }
@@ -194,3 +182,25 @@ function closedIsland(grid) {
 
     return closedIslands;
 }
+
+let test1 = [
+    [0,0,1],
+    [0,1,1],
+    [0,0,1],
+]
+
+let test2 = [
+    [0,0,1],
+    [0,1,0],
+    [0,0,1],
+]
+
+let test3 = [
+    [0,0,1],
+    [0,1,0],
+    [1,0,1],
+]
+
+console.log(countIslands(test1)) // expect 1;
+console.log(countIslands(test2)) // expect 2;
+console.log(countIslands(test3)) // expect 3;
