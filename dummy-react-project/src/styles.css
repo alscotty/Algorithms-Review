@@ -1,0 +1,31 @@
+.App {
+  font-size: 24px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#message-box {
+  border-color: lightblue;
+  border-width: 5px;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+#signals > span {
+  margin: 5px;
+}
+
+#item-flex {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  background-color: lightgreen;
+  font-size: 24px;
+  padding: 5px;
+}
+button:hover {
+  background-color: green;
+  cursor: pointer;
+}
