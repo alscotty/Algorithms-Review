@@ -40,3 +40,57 @@ class Solution:
 
         
         
+
+
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        if not root:
+            return
+        
+        # Use a stack to help with pre-order traversal
+        stack = [root]
+        
+        prev = None
+        while stack:
+            # Pop the current node
+            current = stack.pop()
+            
+            # If there's a previous node, link its right to the current one
+            if prev:
+                prev.right = current
+                prev.left = None
+            
+            # Push right child first, so the left child is processed first (pre-order)
+            if current.right:
+                stack.append(current.right)
+            if current.left:
+                stack.append(current.left)
+            
+            # Move the `prev` pointer to the current node
+            prev = current
+
+            
+    
+class Solution:
+    def is_sum(self, arr):
+        sum = 0
+        for num in arr:
+            sum += num
+        return sum == 0
+    
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        seen_triplets = set(())
+        final_triplets = []
+        
+        start_idx = 0;
+        while start_idx < (len(nums) - 3):
+            considered_triplets = nums[start_idx:start_idx+3]
+            print(considered_triplets)
+            
+            if (self.is_sum(considered_triplets)):
+                final_triplets.append(considered_triplets)
+            
+            start_idx +=1
+
+        return final_triplets
+    
