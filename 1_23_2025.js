@@ -47,3 +47,64 @@ var exist = function(board, word) {
 
     return false;
 };
+
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+const kthSmallest = function(root, k) {
+    let nodeVals = [];
+    let nodeQueue = [root];
+    
+    while (nodeQueue.length > 0) {
+        let currentNode = nodeQueue.shift();
+        if (!currentNode?.val) continue;
+        nodeVals.push(currentNode.val);
+        
+        nodeQueue.push(currentNode.left);
+        nodeQueue.push(currentNode.right);
+    }
+    
+    let sortedVals = nodeVals.sort();
+    
+    return sortedVals[k-1];
+};
+
+
+// more efficient
+
+const kthSmallestEfficient = function(root, k) {
+    let count = 0;
+    let result = null;
+
+    const inOrderTraversal = (node) => {
+        if (!node || result !== null) return;
+
+        // Traverse the left subtree
+        inOrderTraversal(node.left);
+
+        // Visit the current node
+        count++;
+        if (count === k) {
+            result = node.val;
+            return;
+        }
+
+        // Traverse the right subtree
+        inOrderTraversal(node.right);
+    };
+
+    inOrderTraversal(root);
+    return result;
+};
