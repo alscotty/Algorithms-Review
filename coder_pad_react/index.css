@@ -1,0 +1,30 @@
+html, body {
+    background: #03153e;
+    font-size: 1.1rem;
+    font-family: 'Roboto', Arial, sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .todo-flex {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #delete-todo {
+    padding: 16;
+    background: "white";
+    color: red;
+    width: 20%;
+    height:100%;
+    cursor: pointer
+  }
+  
