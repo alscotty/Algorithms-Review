@@ -41,3 +41,36 @@ print(analyze(sample1))
 print(analyze(sample2))
 
 # BONUS A: Print more samples as you see fit
+
+
+# Write your function, here.
+def track_robot(directions):
+    position_change = [0,0]
+    
+    for direction in directions:
+        split = direction.split()
+        compass = split[0]
+        distance = int(split[1])
+        x = position_change[0]
+        y = position_change[1]
+        
+        if compass == 'right':
+            position_change = [x + distance,y]
+        elif compass == 'left':
+            position_change = [x - distance,y]
+        elif compass == 'up':
+            position_change = [x,y + distance]
+        elif compass == 'down':
+            position_change = [x,y - distance]
+    
+    return position_change
+
+print(track_robot(["right 10", "up 50", "left 30", "down 10"]))
+# Prints [-20, 40]
+
+print(track_robot([]))
+# Prints [0, 0]
+# If there are no instructions, the robot doesn't move.
+
+print(track_robot(["right 100", "right 100", "up 500", "up 10000"]))
+# Prints [200, 10500]
