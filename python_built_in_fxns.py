@@ -105,3 +105,108 @@ def sort_teachers_by_classroom_capacity(card_list):
 
 print(sort_teachers_by_classroom_capacity(teachers)) 
 # Richly Emiardson, Emily Richardson, Richard Emilyson
+
+
+phones = [
+    {
+        "brand": "Apple",
+        "model": "iPhone 13 Pro",
+        "cost": 929,
+        "color": "alpine green"
+    },
+    {
+        "brand": "Samsung",
+        "model": "Galaxy S22+",
+        "cost": 999,
+        "color": "black"
+    },
+    {
+        "brand": "Google",
+        "model": "Pixel 6",
+        "cost": 599,
+        "color": "kinda coral"
+    },
+    {
+        "brand": "Apple",
+        "model": "iPhone 13 Pro",
+        "cost": 929,
+        "color": "gold"
+    },
+    {
+        "brand": "Google",
+        "model": "Pixel 6",
+        "cost": 599,
+        "color": "stormy black"
+    }
+]
+
+# Write your code here.
+
+def get_unique_models(phone_list):
+    seen_models = set()
+    filtered_list = []
+    
+    for phone in phone_list:
+        if phone['model'] not in seen_models:
+            seen_models.add(phone['model'])
+            filtered_list.append(phone)
+            
+    return filtered_list
+
+def map_to_names(phone_list):
+    return [phone['model'] for phone in phone_list]
+
+unique_models = list(get_unique_models(phones))
+print(unique_models)                # iPhone 13 Pro, Galaxy S22+, Pixel 6 (dictionaries)
+print(map_to_names(unique_models))  # iPhone 13 Pro, Galaxy S22+, Pixel 6
+
+# Alternate Solution:
+# Write your code here.
+
+# Note, other solutions are possible!
+
+def get_unique_models(phone_list):
+    seen = []
+    return filter(lambda phone: seen.append(phone['model']) is None if phone['model'] not in seen else False, phone_list)
+    
+
+def map_to_names(phone_list):
+    return list(map(lambda phone: phone['model'], phone_list))
+
+phones = [
+    {
+        "brand": "Apple",
+        "model": "iPhone 13 Pro",
+        "cost": 929,
+        "color": "alpine green"
+    },
+    {
+        "brand": "Samsung",
+        "model": "Galaxy S22+",
+        "cost": 999,
+        "color": "black"
+    },
+    {
+        "brand": "Google",
+        "model": "Pixel 6",
+        "cost": 599,
+        "color": "kinda coral"
+    },
+    {
+        "brand": "Apple",
+        "model": "iPhone 13 Pro",
+        "cost": 929,
+        "color": "gold"
+    },
+    {
+        "brand": "Google",
+        "model": "Pixel 6",
+        "cost": 599,
+        "color": "stormy black"
+    }
+]
+
+unique_models = list(get_unique_models(phones))
+print(unique_models)                # iPhone 13 Pro, Galaxy S22+, Pixel 6 (dictionaries)
+print(map_to_names(unique_models))  # iPhone 13 Pro, Galaxy S22+, Pixel 6
+
