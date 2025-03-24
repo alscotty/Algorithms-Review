@@ -174,3 +174,116 @@ let commands = [
 ]
 
 newStore.takeCommands(commands)
+
+
+
+/**
+
+You are a developer in a team that is building a ticket escalation system.
+Tickets have different priority levels, and higher-priority tickets should be served first.
+
+TicketQueue has these methods:
+
+1. addTicket(ticketId: number, priority: number): void
+    – Adds a ticket to the queue.
+
+2. getNextTicket(): number | null
+    – Returns the ticketId of the highest-priority ticket.If multiple tickets share the same priority, return the one added first.
+
+3. resolveTicket(ticketId: number): void
+    – Removes a ticket from the queue if it exists.
+
+4. listTickets(): number[]
+    – Lists ticket IDs in current queue order, sorted by priority and insertion order.
+
+However, it seems like these methods are not working as expected. Tests are failing.
+Debug the code and fix it so that all test cases pass. 
+You are able to edit the methods (and add new ones if necessary), and the class properties.
+
+**/
+
+
+class TicketQueue {
+  constructor() {
+    this.queue = [];
+    this.activeTickets = {};
+    this.counter = 0;
+  }
+
+  addTicket(ticketId, priority) {
+    this.queue.push({ priority, counter: this.counter++, ticketId });
+    this.activeTickets[ticketId] = true;
+      
+    this.queue.sort((a, b) => b.priority - a.priority);
+  }
+
+  getNextTicket() {
+      console.log(this.queue)
+    if (this.queue.length === 0) return null;
+      let firstTicket = this.queue.shift()
+      console.log({firstTicket})
+      
+      return firstTicket.ticketId
+//      return this.queue[0] ? this.queue[0].ticketId : null;
+          
+  }
+
+  resolveTicket(ticketId) {
+    delete this.activeTickets[ticketId];
+  }
+
+  listTickets() {
+      console.log(this.activeTickets)
+      let activeTicketIds = Object.keys(this.activeTickets)
+    return this.queue.filter(t => {
+        return activeTicketIds.includes(t.ticketId.toString())
+    }).map(t => t.ticketId);
+
+  }
+}
+
+runTests(TicketQueue);
+
+
+function assertEqual(actual, expected, description) {
+  const passed = JSON.stringify(actual) === JSON.stringify(expected);
+  if (passed) {
+    console.log(`✅ PASS: ${description}`);
+  } else {
+    console.log(`❌ FAIL: ${description}`);
+    console.log(`   Expected:`, expected);
+    console.log(`   Got     :`, actual);
+  }
+}
+
+function runTests(QueueClass) {
+  console.log("🚀 Running TicketQueue Tests...\n");
+
+  const q = new QueueClass();
+
+  q.addTicket(101, 3);
+  q.addTicket(102, 1);
+  q.addTicket(103, 5);
+  q.addTicket(104, 2);
+  q.addTicket(105, 5);
+
+  assertEqual(q.listTickets(), [103, 105, 101, 104, 102], "Initial ticket order");
+
+  assertEqual(q.getNextTicket(), 103, "getNextTicket() returns 103");
+  assertEqual(q.getNextTicket(), 105, "getNextTicket() returns 105 (same priority)");
+
+  q.resolveTicket(104);
+  assertEqual(q.listTickets(), [101, 102], "Ticket 104 resolved and removed");
+
+  q.addTicket(106, 10);
+  assertEqual(q.listTickets(), [106, 101, 102], "High-priority ticket 106 goes to front");
+
+  assertEqual(q.getNextTicket(), 106, "getNextTicket() returns 106");
+  assertEqual(q.getNextTicket(), 101, "getNextTicket() returns 101");
+  assertEqual(q.getNextTicket(), 102, "getNextTicket() returns 102");
+
+  assertEqual(q.getNextTicket(), null, "getNextTicket() returns null when empty");
+
+  console.log("\n✅ All tests complete.\n");
+}
+
