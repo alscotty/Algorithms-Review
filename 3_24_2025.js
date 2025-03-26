@@ -1,4 +1,4 @@
-const _ = require('lodash');
+// const _ = require('lodash');
 // Your previous Plain Text content is preserved below:
 
 // Problem Statement
@@ -213,32 +213,26 @@ class TicketQueue {
   addTicket(ticketId, priority) {
     this.queue.push({ priority, counter: this.counter++, ticketId });
     this.activeTickets[ticketId] = true;
-      
-    this.queue.sort((a, b) => b.priority - a.priority);
+    // Sort by priority first, then by counter (insertion order)
+    this.queue.sort((a, b) => b.priority - a.priority || a.counter - b.counter);
   }
 
   getNextTicket() {
-      console.log(this.queue)
     if (this.queue.length === 0) return null;
-      let firstTicket = this.queue.shift()
-      console.log({firstTicket})
-      
-      return firstTicket.ticketId
-//      return this.queue[0] ? this.queue[0].ticketId : null;
-          
+    let firstTicket = this.queue.shift();
+    delete this.activeTickets[firstTicket.ticketId];
+    return firstTicket.ticketId;
   }
 
   resolveTicket(ticketId) {
     delete this.activeTickets[ticketId];
+    this.queue = this.queue.filter(ticket => ticket.ticketId !== ticketId);
   }
 
   listTickets() {
-      console.log(this.activeTickets)
-      let activeTicketIds = Object.keys(this.activeTickets)
-    return this.queue.filter(t => {
-        return activeTicketIds.includes(t.ticketId.toString())
-    }).map(t => t.ticketId);
-
+    return this.queue
+      .filter(ticket => this.activeTickets[ticket.ticketId])
+      .map(ticket => ticket.ticketId);
   }
 }
 
