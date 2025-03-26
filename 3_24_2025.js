@@ -219,9 +219,16 @@ class TicketQueue {
 
   getNextTicket() {
     if (this.queue.length === 0) return null;
-    let firstTicket = this.queue.shift();
-    delete this.activeTickets[firstTicket.ticketId];
-    return firstTicket.ticketId;
+    // Find the first active ticket
+    for (let i = 0; i < this.queue.length; i++) {
+      if (this.activeTickets[this.queue[i].ticketId]) {
+        let ticketId = this.queue[i].ticketId;
+        delete this.activeTickets[ticketId];
+        this.queue.splice(i, 1);
+        return ticketId;
+      }
+    }
+    return null;
   }
 
   resolveTicket(ticketId) {
