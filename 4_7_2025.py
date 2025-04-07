@@ -143,3 +143,67 @@ print(binary_search([1, 2, 3, 4, 5], 3))
 print(binary_search([1, 2, 3, 4, 5], 6))
 print(binary_search([1, 2, 3, 4, 5], 1))
 print(binary_search([1, 2, 3, 4, 5], 5))
+
+from typing import List
+
+def searchRange(nums: List[int], target: int) -> List[int]:
+    def findFirst(nums, target, left, right):
+        if left > right:
+            return -1
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            return findFirst(nums, target, mid + 1, right)
+        elif nums[mid] > target:
+            return findFirst(nums, target, left, mid - 1)
+        else:
+            if mid == 0 or nums[mid - 1] != target:
+                return mid
+            else:
+                return findFirst(nums, target, left, mid - 1)
+
+    def findLast(nums, target, left, right):
+        if left > right:
+            return -1
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            return findLast(nums, target, mid + 1, right)
+        elif nums[mid] > target:
+            return findLast(nums, target, left, mid - 1)
+        else:
+            if mid == len(nums) - 1 or nums[mid + 1] != target:
+                return mid
+            else:
+                return findLast(nums, target, mid + 1, right)
+
+    start = findFirst(nums, target, 0, len(nums) - 1)
+    end = findLast(nums, target, 0, len(nums) - 1)
+    return [start, end]
+
+def reverseOneWord(word: str) -> str:
+    word_length = len(word)
+    
+    if word_length == 0:
+        return ""
+    
+    return word[word_length-1] + reverseOneWord(word[0:word_length - 1])
+    
+
+
+
+class Solution:
+    def reverseOneWord(self, word: str) -> str:
+        word_length = len(word)
+        
+        if word_length == 0:
+            return ""
+        
+        return word[word_length-1] + self.reverseOneWord(word[0:word_length - 1])
+    
+    def reverseWords(self, s: str) -> str:
+        all_words = s.split()
+        final_sentence = []
+        
+        for word in all_words:
+            final_sentence.append(self.reverseOneWord(word))
+        
+        return " ".join(final_sentence)
