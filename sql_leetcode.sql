@@ -405,3 +405,61 @@ ON pc.product_category = sold_pc.product_category;
 
 
 
+
+-- Write your PostgreSQL query statement below
+
+select
+contest_id,
+ROUND(COUNT(*) / (1.0 * (select COUNT(distinct user_id) from users)) * 100,2) as percentage
+from register
+group by contest_id
+order by 2 desc,1 
+
+-- Write your PostgreSQL query statement below
+
+select 
+p.project_id,
+ROUND(AVG(e.experience_years),2) as average_years
+from project as p
+left join employee as e
+on p.employee_id = e.employee_id
+group by p.project_id
+
+-- Write your PostgreSQL query statement below
+SELECT TO_CHAR(trans_date,'YYYY-MM') AS month,
+        country,
+        COUNT(id) AS trans_count,
+        SUM(CASE WHEN state='approved' THEN 1 ELSE 0 END) AS approved_count,
+        SUM(amount) AS trans_total_amount,
+        SUM(CASE WHEN state='approved' THEN amount ELSE 0 END) AS approved_total_amount
+FROM Transactions
+GROUP BY month, country
+ORDER BY month
+
+-- Write your PostgreSQL query statement below
+with first_data as (select 
+customer_id,
+MIN(order_date) as first_order_date
+from delivery
+group by customer_id
+)
+select
+(SUM(case when d.order_date = d.customer_pref_delivery_date then 1 else 0 end) / (COUNT(*) * 1.0)) * 100 as immediate_percentage
+from delivery as d
+join first_data as fc
+on d.customer_id = fc.customer_id
+where d.order_date  = fc.first_order_date
+
+-- Write your PostgreSQL query statement below
+with first_data as (select 
+customer_id,
+MIN(order_date) as first_order_date
+from delivery
+group by customer_id
+)
+select
+ROUND((SUM(case when d.order_date = d.customer_pref_delivery_date then 1 else 0 end) / (COUNT(*) * 1.0)) * 100,2) as immediate_percentage
+from delivery as d
+join first_data as fc
+on d.customer_id = fc.customer_id
+where d.order_date  = fc.first_order_date
