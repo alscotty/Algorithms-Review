@@ -463,3 +463,17 @@ from delivery as d
 join first_data as fc
 on d.customer_id = fc.customer_id
 where d.order_date  = fc.first_order_date
+
+ -- Write your PostgreSQL query statement below
+with emp as (
+    select employee_id, manager_id
+    from employees
+)
+select 
+employees.employee_id
+from employees
+left join emp
+on employees.manager_id = emp.employee_id
+where
+employees.salary < 30000
+and emp.employee_id is NULL
