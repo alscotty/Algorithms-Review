@@ -253,3 +253,17 @@ group by product_category
 
 
 
+-- Write your PostgreSQL query statement below
+SELECT
+id,
+COUNT(*) as num
+from (
+select requester_id as id
+from requestaccepted 
+union all
+select accepter_id as id
+from requestaccepted
+)
+group by id
+order by 2 desc
+limit 1
