@@ -55,3 +55,27 @@ class QuadTreeNode {
   const tree = buildQuadTree(input);
   console.log(JSON.stringify(tree, null, 2));
   
+  const decompressQuadTree = (node, size) => {
+    const result = Array.from({ length: size }, () => Array(size).fill(0));
+  
+    const fill = (node, xStart, yStart, size) => {
+      if (node.isLeaf) {
+        for (let i = xStart; i < xStart + size; i++) {
+          for (let j = yStart; j < yStart + size; j++) {
+            result[i][j] = node.val;
+          }
+        }
+      } else {
+        const half = size / 2;
+        fill(node.topLeft, xStart, yStart, half);
+        fill(node.topRight, xStart, yStart + half, half);
+        fill(node.bottomLeft, xStart + half, yStart, half);
+        fill(node.bottomRight, xStart + half, yStart + half, half);
+      }
+    };
+  
+    fill(node, 0, 0, size);
+    return result;
+  };
+
+  console.log(decompressQuadTree(tree, input.length));
