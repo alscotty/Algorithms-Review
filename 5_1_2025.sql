@@ -29,3 +29,11 @@ left join unitsSold as u
     on u.product_id = p.product_id
     and u.purchase_date between p.start_date and p.end_date
 group by p.product_id
+
+-- Write your PostgreSQL query statement bel
+select 
+user_id,
+COUNT(follower_id) as followers_count
+from followers
+group by user_id
+order by user_id ASC
