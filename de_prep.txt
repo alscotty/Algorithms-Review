@@ -1,0 +1,57 @@
+🛍 Example 5: External – Amazon “Buy Again” Recommendations
+1. Product Feature Discussion
+Amazon promotes items users frequently reorder (like dog food, detergent, etc.). Encourages convenience + retention.
+Places to reorder?
+- slots allocated on the home page
+- product search page
+- checkout (did you forget something? etc. Recommendations)
+
+Logging/Schema/data modelling
+purchase happens! Need to capture more info on products
+
+Sales - store transactions - fct
+ds
+item_name
+price
+deliveryDate
+vendorId
+userId - user is the buyer
+category
+tags str[]
+subCategory
+itemId
+
+users - fct
+userId
+.. other user metadata
+
+user_purchase_history - dim
+userId
+purchaseHistory [{
+    itemId: 
+    countPurchases,
+    datesOfPurchases
+},{...}]
+
+SQL
+
+with sales_scrape as (
+    select 
+    userId,
+    ARRAY_AGG(itemIds) as itemId,
+    array_agg(category) as categories
+    from sales
+    where ds = <DATEID>
+    group by userId
+)
+select 
+userId,
+purchaseHistory (merging logic add counts of new items, etc.)
+from user_purchase_history uph
+left join sales_scrape ss using(userId) 
+where uph.ds = <DATEID -1>
+
+python
+
+def increment_purchase_history()
+            
