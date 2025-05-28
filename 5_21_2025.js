@@ -98,7 +98,7 @@ function longestPalindrome(s) {
         expandAroundCenter(i, i);
         // Check for even length palindromes
         expandAroundCenter(i, i + 1);
-    }
+    }   
     
     return s.substring(start, start + maxLength);
 }
