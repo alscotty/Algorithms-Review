@@ -3,7 +3,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 import random
 from typing import Dict, List, Any
-import math
 
 def generate_sample_json_data(num_records: int = 1000) -> List[Dict[str, Any]]:
     data = []
